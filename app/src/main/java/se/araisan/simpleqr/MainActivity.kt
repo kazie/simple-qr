@@ -46,7 +46,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Parcelize
-data class Email(var value: String) : Parcelable
+data class Email(val postfix: String) : Parcelable
+
+fun Email.format() =
+    if (postfix.isNotEmpty()) "kemikaze+${postfix}@gmail.com" else "petter.salminen@magello.se"
 
 @Preview(showBackground = false)
 @Composable
@@ -75,7 +78,7 @@ fun CenterText(text: String, onNameChange: (String) -> Unit) {
     OutlinedTextField(
         value = text,
         onValueChange = { onNameChange(it) },
-        label = { Text("Insert email address") },
+        label = { Text("Insert mail postfix") },
         singleLine = true,
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Email,
@@ -98,14 +101,7 @@ fun DefaultPreview() {
         ) {
             SimpleQrTheme {
 
-                // This is sadly slow, but I could not really find a good way to debounce the save action...
-                var email by rememberSaveable { mutableStateOf(Email("email@domain.com")) }
-                /*var email by rememberStringPreference(
-                    keyName = "email-input",
-                    // Both initial and default makes non null
-                    initialValue = "test@example.com",
-                    defaultValue = ""
-                )*/
+                var email by rememberSaveable { mutableStateOf(Email("")) }
                 Box(
                     contentAlignment = Alignment.TopCenter, // you apply alignment to all children
                     modifier = Modifier
@@ -118,9 +114,9 @@ fun DefaultPreview() {
                             modifier = Modifier
                                 .height(150.dp)
                         )
-                        SimpleImage(email.value)
+                        SimpleImage(email.format())
                         Spacer(modifier = Modifier.height(20.dp))
-                        CenterText(email.value, onNameChange = { email = Email(value = it) })
+                        CenterText(email.postfix, onNameChange = { email = Email(postfix = it) })
                     }
                 }
             }
