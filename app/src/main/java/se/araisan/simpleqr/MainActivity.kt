@@ -46,10 +46,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Parcelize
-data class Email(val postfix: String) : Parcelable
+data class Email(val prefix: String, val mozmailAccount: String = "") : Parcelable
 
 fun Email.format() =
-    if (postfix.isNotEmpty()) "kemikaze+${postfix}@gmail.com" else "petter.salminen@magello.se"
+    if (prefix.isNotEmpty()) "${prefix}@${mozmailAccount}.mozmail.com" else "petter.salminen@magello.se"
 
 @Preview(showBackground = false)
 @Composable
@@ -116,7 +116,7 @@ fun DefaultPreview() {
                         )
                         SimpleImage(email.format())
                         Spacer(modifier = Modifier.height(20.dp))
-                        CenterText(email.postfix, onNameChange = { email = Email(postfix = it) })
+                        CenterText(email.prefix, onNameChange = { email = Email(prefix = it) })
                     }
                 }
             }
