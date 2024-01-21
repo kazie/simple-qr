@@ -78,7 +78,7 @@ fun CenterText(text: String, onNameChange: (String) -> Unit) {
     OutlinedTextField(
         value = text,
         onValueChange = { onNameChange(it) },
-        label = { Text("Insert mail postfix") },
+        label = { Text("Insert mail handler") },
         singleLine = true,
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Email,
