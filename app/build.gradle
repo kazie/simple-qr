@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace 'se.araisan.simpleqr'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "se.araisan.simpleqr"
-        minSdk 32
-        targetSdk 33
+        minSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -38,7 +38,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.4.7'
+        kotlinCompilerExtensionVersion '1.5.8'
     }
     packagingOptions {
         resources {
@@ -49,12 +49,12 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
-    implementation 'androidx.activity:activity-compose:1.7.1'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
+    implementation 'androidx.activity:activity-compose:1.8.2'
     implementation "androidx.compose.ui:ui:$compose_ui_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_version"
-    implementation "androidx.compose.material:material:$compose_ui_version"
+    implementation 'androidx.compose.material:material:1.5.4'
     implementation "io.github.g0dkar:qrcode-kotlin-android:3.2.0"
     implementation "dev.burnoo:compose-remember-preference:1.0.1"
 
